@@ -4,7 +4,14 @@ import css from './MoviesItem.module.css';
 const MovieItem = ({ movie, location }) => {
   return (
     <li className={css.movieListItem}>
-      <Link to={`${movie.id}`} state={{ from: location }}>
+      <Link
+        to={
+          location.path_name === '/movies'
+            ? `${movie.id}`
+            : `/movies/${movie.id}`
+        }
+        state={{ from: location }}
+      >
         <p className={css.movieInfo}>
           {movie.original_title}
           <span>Raiting: {movie.vote_average}</span>

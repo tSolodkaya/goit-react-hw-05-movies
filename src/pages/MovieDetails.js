@@ -16,7 +16,6 @@ const MovieDetails = () => {
     moviesApi
       .fetchMoviesDetails(movieId)
       .then(data => {
-        console.log(data);
         if (Object.keys(data).length === 0) {
           return Promise.reject(new Error(`Sorry, we have no movies.`));
         }
