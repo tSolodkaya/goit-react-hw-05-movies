@@ -1,0 +1,15 @@
+.movieListItem {
+  margin-bottom: 20px;
+  padding: 20px 25px 20px 25px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.movieListItem a {
+  text-decoration: none;
+}
+.movieInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26px;
+  color: rgb(63, 63, 63);
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import moviesApi from '../../services/moviesApi';
-import Notification from 'components/Notification/Notification';
+import css from './Cast.module.css';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -24,25 +24,36 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <ul>
+    <div className={css.cast}>
+      <ul className={css.castList}>
         {cast &&
           cast.map(actor => {
             const { id, profile_path, name, character, popularity } = actor;
             return (
-              <li key={id}>
+              <li className={css.castItem} key={id}>
                 <img
+                  className={css.castImg}
                   src={`${moviesApi.IMAGE_BASE_URL}${profile_path}`}
                   alt={`${name}`}
                 />
-                <p>{name}</p>
-                <p>{character}</p>
-                <p>{popularity}</p>
+                <p>
+                  <span className={css.castSubtitle}>Actor name: </span>
+                  {name}
+                </p>
+                <p>
+                  {' '}
+                  <span className={css.castSubtitle}>Character: </span>
+                  {character}
+                </p>
+                <p>
+                  <span className={css.castSubtitle}>Popularity: </span>
+                  {popularity}
+                </p>
               </li>
             );
           })}
       </ul>
-      {error && <div>{error}</div>}
+      {error && <div className={css.error}>{error}</div>}
     </div>
   );
 };

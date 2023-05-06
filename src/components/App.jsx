@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import Layout from './Layout';
+import css from './App.module.css';
 
 const Home = lazy(() => import('../pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
@@ -10,7 +11,7 @@ const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
   return (
-    <div>
+    <div className={css.container}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

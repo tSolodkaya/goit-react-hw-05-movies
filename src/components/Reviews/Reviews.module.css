@@ -1,0 +1,33 @@
+.reviews {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  padding: 20px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+.reviewsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.reviewItem,
+.error {
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px 25px 20px 25px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.reviewImg {
+  display: block;
+  width: 40px;
+  height: auto;
+  border: 1px solid #808080;
+  border-radius: 50%;
+}
+.reviewSubtitle {
+  font-size: 26px;
+  font-weight: 800;
+}
+.error {
+  font-size: 26px;
+}

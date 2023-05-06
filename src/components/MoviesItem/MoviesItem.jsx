@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
+import css from './MoviesItem.module.css';
 
 const MovieItem = ({ movie, location }) => {
   return (
-    <li>
+    <li className={css.movieListItem}>
       <Link to={`${movie.id}`} state={{ from: location }}>
-        <p>
+        <p className={css.movieInfo}>
           {movie.original_title}
-          <span>{movie.vote_average}</span>
+          <span>Raiting: {movie.vote_average}</span>
         </p>
       </Link>
     </li>

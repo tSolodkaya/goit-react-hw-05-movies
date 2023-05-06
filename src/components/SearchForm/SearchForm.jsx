@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import Notiflix from 'notiflix';
+import css from './SearchForm.module.css';
 
 const SearchForm = ({ onSubmit }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -25,8 +26,9 @@ const SearchForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={css.form} onSubmit={handleSubmit}>
       <input
+        className={css.inputSearch}
         type="text"
         autoComplete="off"
         autoFocus
@@ -34,7 +36,9 @@ const SearchForm = ({ onSubmit }) => {
         value={name}
         onChange={updateQueryString}
       />
-      <button type="submit">Serach</button>
+      <button className={css.searchBtn} type="submit">
+        Serach
+      </button>
     </form>
   );
 };

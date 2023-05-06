@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import css from './Reviews.module.css';
 
 import moviesApi from '../../services/moviesApi';
-import Notification from 'components/Notification/Notification';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -15,7 +15,7 @@ const Reviews = () => {
       .then(data => {
         if (data.results.length === 0) {
           return Promise.reject(
-            new Error(`Sorry, we have no freviews for this movie.`)
+            new Error(`Sorry, we have no reviews for this movie.`)
           );
         }
         return setReviews(data.results);
@@ -24,24 +24,28 @@ const Reviews = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <ul>
+    <div className={css.reviews}>
+      <ul className={css.reviewsList}>
         {reviews.map(review => {
           const { id, author, author_details, content, created_at } = review;
           return (
-            <li key={id}>
+            <li className={css.reviewItem} key={id}>
               <h3>{author}</h3>
               <img
+                className={css.reviewImg}
                 src={`${moviesApi.IMAGE_BASE_URL}${author_details.avatar_path}`}
                 alt={author}
               />
               <p>{content}</p>
-              <p>Created at: {created_at}</p>
+              <p>
+                <span className={css.reviewSubtitle}>Created at: </span>
+                {created_at}
+              </p>
             </li>
           );
         })}
       </ul>
-      {error && <div>{error}</div>}
+      {error && <div className={css.error}>{error}</div>}
     </div>
   );
 };

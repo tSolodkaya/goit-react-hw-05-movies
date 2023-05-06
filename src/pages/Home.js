@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Notification from 'components/Notification/Notification';
 
 import MoviesList from '../components/MoviesList/MoviesList.jsx';
 import moviesApi from '../services/moviesApi';
@@ -24,6 +23,7 @@ const Home = () => {
 
   return (
     <>
+      <h1>Trending this week</h1>
       <MoviesList movies={movies} location={location} />
       {error && <div>{error}</div>}
     </>
