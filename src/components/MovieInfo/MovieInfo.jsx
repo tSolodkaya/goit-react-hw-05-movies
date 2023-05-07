@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import moviesApi from '../../services/moviesApi';
 import css from './MovieInfo.module.css';
 import routes from 'routes';
@@ -69,6 +70,19 @@ const MovieDetails = ({
       </div>
     </>
   );
+};
+
+MovieDetails.propTypes = {
+  original_title: PropTypes.string,
+  genres: PropTypes.array,
+  overview: PropTypes.string,
+  popularity: PropTypes.string,
+  poster_path: PropTypes.string,
+  budget: PropTypes.number,
+  release_date: PropTypes.string,
+  runtime: PropTypes.number,
+  production_countries: PropTypes.array,
+  production_companies: PropTypes.array,
 };
 
 export default MovieDetails;

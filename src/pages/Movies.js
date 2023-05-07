@@ -13,12 +13,6 @@ const Movies = () => {
   const queryParam = searchParams.get('query') ?? '';
   const location = useLocation();
 
-  // const updateQueryString = event => {
-  //   if (event.target.value === '') {
-  //     return setSearchParams({});
-  //   }
-  //   setSearchParams({ name: event.target.value });
-  // };
   const handleFormSubmit = query => {
     setSearchParams({ query: query.trim() });
   };

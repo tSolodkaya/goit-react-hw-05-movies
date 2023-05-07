@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
-import Layout from './Layout';
+
+import Layout from './Layout/Layout';
 import routes from '../routes';
 import css from './App.module.css';
 

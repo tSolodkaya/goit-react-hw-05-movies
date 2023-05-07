@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
 import moviesApi from '../../services/moviesApi';
 import css from './Cast.module.css';
 
@@ -41,7 +42,6 @@ const Cast = () => {
                   {name}
                 </p>
                 <p>
-                  {' '}
                   <span className={css.castSubtitle}>Character: </span>
                   {character}
                 </p>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import css from './GoBackButton.module.css';
 
 const GoBackButton = ({ children }) => {
@@ -5,3 +6,7 @@ const GoBackButton = ({ children }) => {
 };
 
 export default GoBackButton;
+
+GoBackButton.propTypes = {
+  children: PropTypes.object,
+};

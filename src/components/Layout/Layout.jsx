@@ -1,7 +1,9 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import styled from 'styled-components';
-import Loader from './Loader/Loader';
+
+import Loader from '../Loader/Loader';
+import routes from 'routes';
 import css from './Layout.module.css';
 
 const StyledLink = styled(NavLink)`
@@ -19,10 +21,10 @@ const Layout = () => {
         <nav>
           <ul className={css.menu}>
             <li className={css.menuItem}>
-              <StyledLink to="/">Home</StyledLink>
+              <StyledLink to={routes.HOME}>Home</StyledLink>
             </li>
             <li className={css.menuItem}>
-              <StyledLink to="/movies">Movies</StyledLink>
+              <StyledLink to={routes.MOVIES}>Movies</StyledLink>
             </li>
           </ul>
         </nav>
