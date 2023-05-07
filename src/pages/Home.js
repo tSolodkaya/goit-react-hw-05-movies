@@ -2,12 +2,10 @@ import { useEffect, useState } from 'react';
 
 import MoviesList from '../components/MoviesList/MoviesList.jsx';
 import moviesApi from '../services/moviesApi';
-import { useLocation } from 'react-router-dom';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(null);
   const [error, setError] = useState('');
-  const location = useLocation();
 
   useEffect(() => {
     moviesApi
@@ -24,7 +22,7 @@ const Home = () => {
   return (
     <>
       <h1>Trending this week</h1>
-      <MoviesList movies={movies} location={location} />
+      {movies && <MoviesList movies={movies} />}
       {error && <div>{error}</div>}
     </>
   );

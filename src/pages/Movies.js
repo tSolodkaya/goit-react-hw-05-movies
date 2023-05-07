@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import SearchForm from 'components/SearchForm/SearchForm';
 import MoviesList from 'components/MoviesList/MoviesList';
@@ -7,19 +7,25 @@ import Notification from 'components/Notification/Notification';
 import moviesApi from '../services/moviesApi';
 
 const Movies = () => {
-  const [name, setName] = useState('');
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState('');
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryParam = searchParams.get('query') ?? '';
   const location = useLocation();
 
-  const handleFormSubmit = searchParams => {
-    setName(searchParams.get('name'));
+  // const updateQueryString = event => {
+  //   if (event.target.value === '') {
+  //     return setSearchParams({});
+  //   }
+  //   setSearchParams({ name: event.target.value });
+  // };
+  const handleFormSubmit = query => {
+    setSearchParams({ query: query.trim() });
   };
 
   useEffect(() => {
     moviesApi
-      .fetchMoviesByQuery(name)
+      .fetchMoviesByQuery(queryParam)
       .then(data => {
         if (data.results === 0) {
           return Promise.reject(new Error(`Sorry, we have no movies.`));
@@ -27,7 +33,7 @@ const Movies = () => {
         return setMovies([...data.results]);
       })
       .catch(error => setError(error.message));
-  }, [name]);
+  }, [queryParam]);
 
   return (
     <>

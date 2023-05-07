@@ -1,6 +1,7 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 import Layout from './Layout';
+import routes from '../routes';
 import css from './App.module.css';
 
 const Home = lazy(() => import('../pages/Home'));
@@ -13,15 +14,15 @@ export const App = () => {
   return (
     <div className={css.container}>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path={routes.HOME} element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
+          <Route path={routes.MOVIES} element={<Movies />} />
+          <Route path={routes.MOVIES_DETAILS} element={<MovieDetails />}>
+            <Route path={routes.CAST} element={<Cast />} />
+            <Route path={routes.REVIEWS} element={<Reviews />} />
           </Route>
-          <Route path="*" element={<Home />} />
         </Route>
+        <Route path="*" element={<Navigate to={routes.HOME} replace />} />
       </Routes>
     </div>
   );
