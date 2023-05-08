@@ -21,7 +21,7 @@ const Movies = () => {
     moviesApi
       .fetchMoviesByQuery(queryParam)
       .then(data => {
-        if (data.results === 0) {
+        if (!data.results) {
           return Promise.reject(new Error(`Sorry, we have no movies.`));
         }
         return setMovies([...data.results]);

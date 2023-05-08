@@ -20,45 +20,63 @@ const MovieDetails = ({
     <>
       <div className={css.goBackLink}></div>
       <div className={css.movieCard}>
-        <img
-          src={`${moviesApi.IMAGE_BASE_URL}${poster_path}`}
-          alt={original_title}
-        />
-        <h2 className={css.title}>{original_title}</h2>
-        <p>{overview}</p>
-        <p>
-          <span className={css.subtitle}>Popularity:</span> {popularity}
-        </p>
-
-        <p className={css.subtitle}>Genres: </p>
+        {poster_path ? (
+          <img
+            src={`${moviesApi.IMAGE_BASE_URL}${poster_path}`}
+            alt={original_title}
+          />
+        ) : (
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Picture_icon_BLACK.svg"
+            alt="default"
+          />
+        )}
+        {original_title && <h2 className={css.title}>{original_title}</h2>}
+        {overview && <p>{overview}</p>}
+        {popularity && (
+          <p>
+            <span className={css.subtitle}>Popularity:</span> {popularity}
+          </p>
+        )}
+        {genres && <p className={css.subtitle}>Genres: </p>}{' '}
         <ul>
           {genres && genres.map(genre => <li key={genre.id}>{genre.name}</li>)}
         </ul>
-        <p className={css.subtitle}>Production Countries:</p>
+        {production_countries && (
+          <p className={css.subtitle}>Production Countries:</p>
+        )}
         <ul>
           {production_countries &&
             production_countries.map(country => (
               <li key={country.name}>{country.name}</li>
             ))}
         </ul>
-        <p className={css.subtitle}>Production Companies:</p>
+        {production_companies && (
+          <p className={css.subtitle}>Production Companies:</p>
+        )}
         <ul>
           {production_companies &&
             production_companies.map(company => (
               <li key={company.id}>{company.name}</li>
             ))}
         </ul>
-        <p>
-          <span className={css.subtitle}>Budget: </span>
-          {budget}
-        </p>
-        <p>
-          <span className={css.subtitle}>Release: </span>
-          {release_date}
-        </p>
-        <p>
-          <span className={css.subtitle}>Runtime: </span> {runtime}
-        </p>
+        {budget > 0 && (
+          <p>
+            <span className={css.subtitle}>Budget: </span>
+            {budget}
+          </p>
+        )}
+        {release_date && (
+          <p>
+            <span className={css.subtitle}>Release: </span>
+            {release_date}
+          </p>
+        )}
+        {runtime && (
+          <p>
+            <span className={css.subtitle}>Runtime: </span> {runtime}
+          </p>
+        )}
         <ul className={css.moreInfoBtnList}>
           <li className={css.moreInfoBtn}>
             <Link to={routes.CAST}>Cast</Link>
@@ -76,7 +94,7 @@ MovieDetails.propTypes = {
   original_title: PropTypes.string,
   genres: PropTypes.array,
   overview: PropTypes.string,
-  popularity: PropTypes.string,
+  popularity: PropTypes.number,
   poster_path: PropTypes.string,
   budget: PropTypes.number,
   release_date: PropTypes.string,

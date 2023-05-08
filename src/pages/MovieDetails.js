@@ -19,8 +19,10 @@ const MovieDetails = () => {
     moviesApi
       .fetchMoviesDetails(movieId)
       .then(data => {
-        if (Object.keys(data).length === 0) {
-          return Promise.reject(new Error(`Sorry, we have no movies.`));
+        if (!data) {
+          return Promise.reject(
+            new Error(`Sorry, we have no info about this movie.`)
+          );
         }
         return setDetails(data);
       })
@@ -32,7 +34,7 @@ const MovieDetails = () => {
         <Link to={backLinkLocationRef.current}> Go back</Link>
       </GoBackButton>
 
-      <MovieInfo {...details} />
+      {details && <MovieInfo {...details}></MovieInfo>}
       {error && <div>{error}</div>}
       <Suspense fallback={<Loader />}>
         <Outlet />

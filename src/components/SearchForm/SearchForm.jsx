@@ -10,7 +10,7 @@ const SearchForm = ({ onSubmit }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (query.trim() === '') {
+    if (!query.trim()) {
       return Notiflix.Notify.warning(
         'Please, type what images do you want to find =)'
       );
